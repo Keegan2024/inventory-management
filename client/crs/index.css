@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #2A3F5F; /* Classic theme */
+  /* OR #1B263B for modern theme */
+  color: white;
+}
+.card {
+  @apply bg-white text-gray-800 rounded-lg shadow-md p-6;
+}
+.btn-primary {
+  @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700;
+}
+.input {
+  @apply w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+.btn-secondary {
+  @apply text-blue-600 hover:underline;
+}
