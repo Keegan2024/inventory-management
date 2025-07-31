@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #2A4365; /* Modern blue background */
+  color: #E0E1DD; /* Light text for contrast */
+}
+
+.container {
+  @apply mx-auto px-4;
+}
+
+.card {
+  @apply bg-white text-gray-800 rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105;
+}
+
+.btn-primary {
+  @apply bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition duration-300;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary transition duration-300;
+}
+
+.input {
+  @apply w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary transition duration-200;
+}
+
+.table {
+  @apply w-full border-collapse bg-white text-gray-800 rounded-xl shadow-lg;
+}
+
+.table th, .table td {
+  @apply p-4 border-b border-gray-200;
+}
+
+.table th {
+  @apply bg-secondary text-white font-semibold;
+}
