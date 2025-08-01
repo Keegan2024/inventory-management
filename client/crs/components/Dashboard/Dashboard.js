@@ -1,5 +1,4 @@
 import React from 'react';
-;
 import { Routes, Route, Link } from 'react-router-dom';
 import MedicineList from './MedicineList';
 import AddMedicine from './AddMedicine';
@@ -14,7 +13,7 @@ const Dashboard = ({ user }) => {
         <Link to="/dashboard/medicines" className="btn-primary">
           View Medicines
         </Link>
-        {user.role === 'admin' && (
+        {user?.role === 'admin' && (
           <Link to="/dashboard/add-medicine" className="btn-primary">
             Add Medicine
           </Link>
@@ -22,7 +21,7 @@ const Dashboard = ({ user }) => {
         <Link to="/dashboard/report" className="btn-primary">
           Submit Report
         </Link>
-        {user.role === 'admin' && (
+        {user?.role === 'admin' && (
           <Link to="/dashboard/review-reports" className="btn-primary">
             Review Reports
           </Link>
@@ -31,7 +30,7 @@ const Dashboard = ({ user }) => {
       <div className="card">
         <Routes>
           <Route path="/medicines" element={<MedicineList />} />
-          <Route path="/add-medice" element={<AddMedicine />} />
+          <Route path="/add-medicine" element={<AddMedicine />} />
           <Route path="/report" element={<ReportForm />} />
           <Route path="/review-reports" element={<ReportReview />} />
         </Routes>
