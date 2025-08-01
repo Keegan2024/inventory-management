@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import Dashboard from './components/Dashboard/Dashboard';
-import MedicineList from './components/Dashboard/MedicineList';
-import AddMedicine from './components/Dashboard/AddMedicine';
-import ReportForm from './components/Dashboard/ReportForm';
-import ReportReview from './components/Dashboard/ReportReview';
 import ResetPassword from './components/Auth/ResetPassword';
+import Navbar from './components/Navbar';
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setUser({ token, role: 'user' }); // You might want to decode JWT to get real role
+    }
+  }, []);
+
   return (
     <div className="App">
+      {user && <Navbar setUser={setUser} />}
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="medicines" element={<MedicineList />} />
-          <Route path="add-medicine" element={<AddMedicine />} />
-          <Route path="report" element={<ReportForm />} />
-          <Route path="review-reports" element={<ReportReview />} />
-        </Route>
+        <Route path="/dashboard/*" element={<Dashboard user={user} />} />
       </Routes>
     </div>
   );
