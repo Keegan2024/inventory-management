@@ -1,5 +1,4 @@
 {
-  "framework": "react",
   "builds": [
     {
       "src": "client/package.json",
