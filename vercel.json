@@ -21,5 +21,10 @@
       "src": "/(.*)",
       "dest": "/client/build/$1"
     }
-  ]
+  ],
+  "functions": {
+    "server/server.js": {
+      "includeFiles": "server/**"
+    }
+  }
 }
