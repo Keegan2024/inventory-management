@@ -13,7 +13,13 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setUser({ token, role: 'user' }); // You might want to decode JWT to get real role
+      // Decode JWT to get user info properly
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setUser({ token, role: payload.role, facility: payload.facility });
+      } catch (error) {
+        localStorage.removeItem('token');
+      }
     }
   }, []);
 
@@ -22,6 +28,7 @@ function App() {
       {user && <Navbar setUser={setUser} />}
       <Routes>
         <Route path="/" element={<Login setUser={setUser} />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
